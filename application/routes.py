@@ -1,7 +1,7 @@
 from application import app, db
 from application.models import Tasks
-from flask import render_template
-
+from flask import render_template, request, redirect, url_for
+from application.forms import TaskForm
 @app.route('/')
 @app.route('/home')
 def home():
@@ -9,14 +9,17 @@ def home():
     return render_template('index.html', title= "Home", all_tasks=all_tasks)
 
 
-@app.route('/create/task/<description>')
-def add(description):
-    new_task = Tasks(description=description)
-    db.session.add(new_task)
-    db.session.commit()
+@app.route('/createtask', methods=['GET', 'POST'])
+def add():
+    form = TaskForm()
 
-    return f"Hello there, welcome to the To-do List site:)  Task with id {new_task.id} added to database"
+    if request.method == "POST":
+        new_task = Tasks(description=form.description.data)
+        db.session.add(new_task)
+        db.session.commit()
+        return redirect(url_for("home"))
 
+    return render_template('create_form.html', title= "Task Adder", form=form)
 
 @app.route('/read/tasks')
 def read_tasks():
