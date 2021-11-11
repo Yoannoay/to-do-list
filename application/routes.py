@@ -25,11 +25,14 @@ def read_tasks():
 
     for task in all_tasks:
         tasks_dict["tasks"].append({
+            "ID": task.id,
             "description": task.description,
             "Completed?": task.completed
         })
         
     return tasks_dict
+
+        # add a template render to this, it's pretty ugly in JSON form
 
 @app.route('/update/<int:id>/<name>')
 def update(id, name):
@@ -40,7 +43,7 @@ def update(id, name):
     return f"Task {id} updated to {name}"
 
 @app.route('/delete/<int:id>')
-def delete():
+def delete(id):
     dlt_tsk = Tasks.query.get(id)
     db.session.delete(dlt_tsk)
     db.session.commit()
@@ -63,6 +66,8 @@ def incomplete(id):
     db.session.commit()
     return f"Task {id} is incomplete"
 
+    # render template (ugly)
+
 @app.route('/completedlist')
 def all_complete():
     all_tasks= Tasks.query.all()
@@ -71,7 +76,14 @@ def all_complete():
     return render_template('completedlist.html', title= "Completed Lists", all_tasks=all_tasks, completed_tsks=completed_tsks)
 
    
+@app.route('/incomplete_tasks')
+def incomplete_list():
+    all_tasks= Tasks.query.all()
+    incomplete_tsks = {"Incomplete tasks": []}
 
+    return render_template('Incomplete.html', title= "Incomplete", all_tasks=all_tasks, incomplete_tsks=incomplete_tsks)
+
+  
  
    
             
