@@ -1,0 +1,52 @@
+    As a user, I want to add a new todo task, so I know I have a task to be completed ##done
+
+
+    As a user, I want to view my todo tasks, so that I know what I need to do ##done
+
+
+    As a user, I want to change the description of the task, so I can update its contents after creating it  ##done
+
+
+    As a user, I want to delete a task, in case I don't need to do that task anymore ##done
+
+
+    As a user, I want to set a todo task as completed, so I know which tasks I've already done  ##done
+
+
+    As a user, I want to set a todo task as incomplete, in case a complete task still needs doing  ##done
+
+
+
+    As a user, I want to view all my todo tasks on the home page of the application, so that I can know what tasks still need completing as soon as I navigate to the website ##done
+        
+        
+    As a user, I want to see which tasks I've completed, so I can see how much I've achieved vs how much I still need to do 
+	
+	
+As a user, I want to add a new todo task with a description using a web form, so I can keep track of things I need to do via a GUI
+	
+	
+As a user, I want to change the description of the task using a web form, so I can update its contents after creating it via a GUI
+	
+	
+As a user, I want to delete a task with a click of a button, so that I can quickly and easily delete a task
+
+
+
+
+
+As a user, I want to set a todo task as completed with a click of a button, so I know which tasks I've already done
+
+
+As a user, I want to set a todo task as incomplete with a click of a button, in case a complete task still needs doing
+
+Unit test for Read functionality
+
+
+Unit test for Create functionality
+
+
+Unit test for Delete functionality
+
+
+Unit test for Update functionality
