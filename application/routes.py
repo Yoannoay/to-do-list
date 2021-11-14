@@ -2,6 +2,7 @@ from application import app, db
 from application.models import Tasks
 from flask import render_template, request, redirect, url_for
 from application.forms import TaskForm, TaskDesc
+
 @app.route('/')
 @app.route('/home')
 def home():
