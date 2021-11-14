@@ -45,7 +45,8 @@ def update():
         task = Tasks.query.get(form.taskselect.data)
         task.description = form.description.data
         db.session.commit()
-    
+        return redirect(url_for("home"))
+        
     return render_template('update_form.html', title= "Description change", form=form)
 
 
