@@ -3,6 +3,7 @@ from application.models import Tasks
 from flask import render_template, request, redirect, url_for
 from application.forms import TaskForm, TaskDesc
 
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -38,10 +39,10 @@ def read_tasks():
 
         # add a template render to this, it's pretty ugly in JSON form
 
+
 @app.route('/update/<int:id>', methods= ['GET', 'POST'])
 def update(id):
     form = TaskDesc()
-
     if request.method == "POST":
         task = Tasks.query.get(id)
         task.description = form.description.data
@@ -49,6 +50,8 @@ def update(id):
         return redirect(url_for("home"))
         
     return render_template('update_form.html', title= "Description change", form=form, id=id)
+
+
 
 
 
