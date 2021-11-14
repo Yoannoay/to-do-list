@@ -38,17 +38,17 @@ def read_tasks():
 
         # add a template render to this, it's pretty ugly in JSON form
 
-@app.route('/update', methods= ['GET', 'POST'])
-def update():
+@app.route('/update/<int:id>', methods= ['GET', 'POST'])
+def update(id):
     form = TaskDesc()
 
     if request.method == "POST":
-        task = Tasks.query.get(form.taskselect.data)
+        task = Tasks.query.get(id)
         task.description = form.description.data
         db.session.commit()
         return redirect(url_for("home"))
         
-    return render_template('update_form.html', title= "Description change", form=form)
+    return render_template('update_form.html', title= "Description change", form=form, id=id)
 
 
 
@@ -57,7 +57,7 @@ def delete(id):
     dlt_tsk = Tasks.query.get(id)
     db.session.delete(dlt_tsk)
     db.session.commit()
-    return f" {id} has been deleted."
+    return redirect(url_for("home"))
 
 # doesnt show task id when called, update is weird with the id used, sometimes yes, other times no. 
 
@@ -67,14 +67,14 @@ def completed(id):
     task= Tasks.query.get(id)
     task.completed= True
     db.session.commit()
-    return f"Task {id} has been marked as completed"
+    return redirect(url_for("home"))
 
 @app.route('/incomplete/task/<int:id>')
 def incomplete(id): 
     task= Tasks.query.get(id)
     task.completed= False
     db.session.commit()
-    return f"Task {id} is incomplete"
+    return redirect(url_for("home"))
 
     # render template (ugly)
 

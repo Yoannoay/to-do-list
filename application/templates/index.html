@@ -7,6 +7,10 @@
         <p>
             Task ID: {{task.id}}<br>
             Task Description: {{task.description}}<br>
+            <a href= "{{ url_for('update', id=task.id) }}">Edit</a>
+            <a href= "{{ url_for('delete', id=task.id) }}">Delete</a>
+            <a href= "{{ url_for('completed', id=task.id) }}">Mark as complete</a>
+            
         </p>
     {% endif %} 
     {% endfor %}
@@ -17,6 +21,9 @@
         <p>
             Task ID: {{task.id}}<br>
             Task Description: {{task.description}}<br>
+            <a href= "{{ url_for('update', id=task.id) }}">Edit</a>
+            <a href= "{{ url_for('delete', id=task.id) }}">Delete</a>
+            <a href= "{{ url_for('incomplete', id=task.id) }}">Mark as incomplete</a>
         </p>
     {% endif %} 
     {% endfor %}
