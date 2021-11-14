@@ -1,7 +1,8 @@
 from application import app, db
 from application.models import Tasks
 from flask import render_template, request, redirect, url_for
-from application.forms import TaskForm
+from application.forms import TaskForm, TaskDesc
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -37,13 +38,19 @@ def read_tasks():
 
         # add a template render to this, it's pretty ugly in JSON form
 
-@app.route('/update/<int:id>/<name>')
-def update(id, name):
-    # new_desc = name 
-    task= Tasks.query.get(id)
-    task.description= name 
-    db.session.commit()
-    return f"Task {id} updated to {name}"
+@app.route('/update', methods= ['GET', 'POST'])
+def update():
+    form = TaskDesc()
+
+    if request.method == "POST":
+        task = Tasks.query.get(form.taskselect.data)
+        task.description = form.description.data
+        db.session.commit()
+        return redirect(url_for("home"))
+        
+    return render_template('update_form.html', title= "Description change", form=form)
+
+
 
 @app.route('/delete/<int:id>')
 def delete(id):
@@ -85,8 +92,6 @@ def incomplete_list():
     incomplete_tsks = {"Incomplete tasks": []}
 
     return render_template('Incomplete.html', title= "Incomplete", all_tasks=all_tasks, incomplete_tsks=incomplete_tsks)
-
-  
  
    
             
