@@ -10,4 +10,7 @@ class TaskForm(FlaskForm):
 class TaskDesc(FlaskForm):
     taskselect = IntegerField("Task ID", validators= [DataRequired()])
     description = StringField("New Task Description", validators=[DataRequired()])
+
     submit = SubmitField("Confirm change")
+    
+
