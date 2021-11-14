@@ -50,11 +50,6 @@ def update():
     return render_template('update_form.html', title= "Description change", form=form)
 
 
-    # new_desc = name 
-    # task= Tasks.query.get(id)
-    # task.description= name 
-    # db.session.commit()
-    # return f"Task {id} updated to {name}"
 
 @app.route('/delete/<int:id>')
 def delete(id):
@@ -96,8 +91,6 @@ def incomplete_list():
     incomplete_tsks = {"Incomplete tasks": []}
 
     return render_template('Incomplete.html', title= "Incomplete", all_tasks=all_tasks, incomplete_tsks=incomplete_tsks)
-
-  
  
    
             
