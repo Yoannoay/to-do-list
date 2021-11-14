@@ -1,0 +1,1 @@
+The hyperlink header doesn't apply to all the routes? - because they aren't all formatted with a html template. 
